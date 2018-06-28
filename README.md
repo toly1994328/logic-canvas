@@ -91,3 +91,21 @@ canvas.runGo(function (timer) {
 }, 10);
 ```
 ![image](http://m.qpic.cn/psb?/V118BZ5R26fcwl/hn6DrydxBfnTfJ.6gBywcMzbE0ae1dY3KwV*g1lX4sM!/c/dAgBAAAAAAAA&bo=WAIrAQAAAAACB1M!&rf=viewer_4)
+
+#### n角星的角数不断增大时：
+```
+var count = 0;
+canvas.runGo(function (timer) {
+    canvas.clearWin();
+    canvas.drawCoord(COO);
+    canvas.drawNStar({
+        num: count, R: 100, r: 55,p:{x:100,y:0},
+        ss: false, fs: "#F0F674"
+    });
+    count++;
+    if (count >= 200) {
+        clearInterval(timer);
+    }
+}, 30);
+```
+![image](http://m.qpic.cn/psb?/V118BZ5R26fcwl/lJ4ji9XbWEB0GhG4Vl.DYVVwLOptoHtPqjO2MNvoMSE!/c/dFoAAAAAAAAA&bo=WAIrAQAAAAACB1M!&rf=viewer_4)

@@ -54,24 +54,24 @@ canvas.drawCoord(COO);
 //     coo: COO
 // });
 
-var count = 0;
-canvas.runGo(function (timer) {
-    canvas.clearWin();
-    canvas.drawCoord(COO);
-    let drawTrg = canvas.drawTrg({
-        p0: {x: 0, y: 0},
-        p1: {x: count, y: 100},
-        p2: {x: 200, y: count/2},
-        ss:false,
-        coo: COO
-    });
-    count++;
-    if (count >= 360 + 90) {
-        clearInterval(timer);
-    }
-}, 10);
+// var count = 0;
+// canvas.runGo(function (timer) {
+//     canvas.clearWin();
+//     canvas.drawCoord(COO);
+//     let drawTrg = canvas.drawTrg({
+//         p0: {x: 0, y: 0},
+//         p1: {x: count, y: 100},
+//         p2: {x: 200, y: count/2},
+//         ss:false,
+//         coo: COO
+//     });
+//     count++;
+//     if (count >= 360 + 90) {
+//         clearInterval(timer);
+//     }
+// }, 10);
 
-
+//点集曲线
 // for (let i = 0; i < 2000; i += 0.1) {
 //     canvas.drawPointPolar({
 //         R: 0.5,//点半径
@@ -81,3 +81,17 @@ canvas.runGo(function (timer) {
 //         fs: "#f00"
 //     });
 // }
+
+var count = 0;
+canvas.runGo(function (timer) {
+    canvas.clearWin();
+    canvas.drawCoord(COO);
+    canvas.drawNStar({
+        num: count, R: 100, r: 55,p:{x:100,y:0},
+        ss: false, fs: "#F0F674"
+    });
+    count++;
+    if (count >= 200) {
+        clearInterval(timer);
+    }
+}, 30);
