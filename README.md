@@ -33,3 +33,22 @@ canvas.drawRect({
 });
 ```
 ![image](http://a2.qpic.cn/psb?/V118BZ5R26fcwl/PV4OZOfiT2v4VFdMKpC*BTSer8ev1URwQkTOE5WUyHo!/b/dFkAAAAAAAAA&ek=1&kp=1&pt=0&bo=qgPrAQAAAAADF3E!&tl=1&vuin=2722448703&tm=1530147600&sce=60-2-2&rf=viewer_4)
+##### 绘制直线
+```
+//绘制给定起点,长度，角度的直线（长度和角度30ms加1）,起点为坐标原点
+var count = 0;
+canvas.runGo(function (timer) {
+    canvas.drawLine({
+        p0: {x: 0, y: 0},
+        c: count,
+        ang: count / 180 * Math.PI,
+        ss: canvas.getRandomColor(),//获取随机色
+        coo: COO,//设置坐标系
+    });
+    count++;
+    if (count >= 360 + 90) {
+        clearInterval(timer);
+    }
+}, 30);
+```
+![image](http://m.qpic.cn/psb?/V118BZ5R26fcwl/Fm53nOYkD8SggeqnzIlII3wOd1*318XwqGvIvhOQ1JY!/b/dDIBAAAAAAAA&bo=WAJBAQAAAAACR3k!&rf=viewer_4)
