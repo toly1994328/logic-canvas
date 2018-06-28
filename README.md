@@ -52,3 +52,42 @@ canvas.runGo(function (timer) {
 }, 30);
 ```
 ![image](http://m.qpic.cn/psb?/V118BZ5R26fcwl/Fm53nOYkD8SggeqnzIlII3wOd1*318XwqGvIvhOQ1JY!/b/dDIBAAAAAAAA&bo=WAJBAQAAAAACR3k!&rf=viewer_4)
+
+---
+
+使用点集绘制曲线（例：极坐标下，绘制笛卡尔心形曲线）
+```
+for (let i = 0; i < 2000; i += 0.1) {
+    canvas.drawPointPolar({
+        R: 0.5,//点半径
+        c: (1 - Math.sin(i / 180 * Math.PI)) * 100,//极坐标下长度
+        ang: i / 180 * Math.PI,//极坐标下角度
+        coo: COO,
+        fs: "#f00"
+    });
+}
+```
+![image](http://m.qpic.cn/psb?/V118BZ5R26fcwl/XTdCgkkilU4zpdTshazMMnmyT4M4EWOakmEDukh97FQ!/b/dC4BAAAAAAAA&bo=FAT1AQAAAAADF9Y!&rf=viewer_4)
+
+---
+#### 根据三点绘制三角形：canvas.drawTrg
+
+```
+var count = 0;
+canvas.runGo(function (timer) {
+    canvas.clearWin();
+    canvas.drawCoord(COO);
+    let drawTrg = canvas.drawTrg({
+        p0: {x: 0, y: 0},
+        p1: {x: count, y: 100},
+        p2: {x: 200, y: count/2},
+        ss:false,
+        coo: COO
+    });
+    count++;
+    if (count >= 360 + 90) {
+        clearInterval(timer);
+    }
+}, 10);
+```
+![image](http://m.qpic.cn/psb?/V118BZ5R26fcwl/hn6DrydxBfnTfJ.6gBywcMzbE0ae1dY3KwV*g1lX4sM!/c/dAgBAAAAAAAA&bo=WAIrAQAAAAACB1M!&rf=viewer_4)

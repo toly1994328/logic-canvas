@@ -1,6 +1,9 @@
 import Parse from "./Parse";
 import Logic from "./Logic";
 
+/**
+ * 图形路径创建类
+ */
 class Polygon {
     static pointPath(ctx, configJson) {
 
@@ -30,7 +33,7 @@ class Polygon {
         var coo = configJson["coo"];
         ctx.moveTo(line.p0.x + coo.x, coo.y - line.p0.y);
         ctx.lineTo(line.p1.x + coo.x, coo.y - line.p1.y);
-
+        return line;
     }
 
     static trgPath(ctx, configJson) {
@@ -51,9 +54,6 @@ class Polygon {
         } else {
             console.log("无法组成三角形！");
         }
-
-
-
 
     }
 

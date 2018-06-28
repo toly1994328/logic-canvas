@@ -2,7 +2,7 @@ import Polygon from "./Polygon"
 import Norm from "./Norm"
 
 /**
- * 构造函数
+ * 初始画布，绘制图形
  * @param winW 画布宽
  * @param winH 画布高
  * @param canvasId 画布dom中的id
@@ -248,7 +248,10 @@ MyCanvas.prototype = {
             Polygon.arcPath(ctx, configJson, dirc);
         }, configJson);
     },
-
+    /**
+     * 绘制点
+     * @param configJson
+     */
     drawPoint: function (configJson) {
         var self = this;
         this.s2rb2c(function (ctx) {

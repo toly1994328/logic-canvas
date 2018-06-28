@@ -21,7 +21,9 @@ var line = {
     _y: undefined//属性变量y
 };
 
-
+/**
+ * 图形解析类
+ */
 class Parse {
     /**
      * rot为以p0为旋转点顺时针旋转到p1的弧度数

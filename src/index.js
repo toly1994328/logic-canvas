@@ -2,7 +2,7 @@ import MyCanvas from "./lib/MyCanvas";
 
 let canvas = new MyCanvas(1200, 600, "canvas");
 canvas.clearWin();
-var COO = {x: 360, y: 400};//坐标原点
+var COO = {x: 100, y: 400};//坐标原点
 canvas.drawCoord(COO);
 //
 //
@@ -47,11 +47,37 @@ canvas.drawCoord(COO);
 // }, 30);
 
 //三角形绘制：
-let drawTrg = canvas.drawTrg({
-    p0: {x: 0, y: 0},
-    p1: {x: 100, y: 0},
-    p2: {x: 200, y: 0},
-    coo: COO
-});
+// let drawTrg = canvas.drawTrg({
+//     p0: {x: 0, y: 0},
+//     p1: {x: 100, y: 0},
+//     p2: {x: 200, y: 0},
+//     coo: COO
+// });
 
-console.log(drawTrg);
+var count = 0;
+canvas.runGo(function (timer) {
+    canvas.clearWin();
+    canvas.drawCoord(COO);
+    let drawTrg = canvas.drawTrg({
+        p0: {x: 0, y: 0},
+        p1: {x: count, y: 100},
+        p2: {x: 200, y: count/2},
+        ss:false,
+        coo: COO
+    });
+    count++;
+    if (count >= 360 + 90) {
+        clearInterval(timer);
+    }
+}, 10);
+
+
+// for (let i = 0; i < 2000; i += 0.1) {
+//     canvas.drawPointPolar({
+//         R: 0.5,//点半径
+//         c: (1 - Math.sin(i / 180 * Math.PI)) * 100,//极坐标下长度
+//         ang: i / 180 * Math.PI,//极坐标下角度
+//         coo: COO,
+//         fs: "#f00"
+//     });
+// }
