@@ -1,5 +1,5 @@
 import Logic from "./Logic"
-
+import Law from "./Law"
 var triangle = {
     a: undefined,//BC边
     b: undefined,//AC边
@@ -122,14 +122,14 @@ class Parse {
 
         if (a + b <= c || b + c <= a || a + c <= b || a <= 0 || b <= 0 || c <= 0) {
             console.log("无法组成三角形!");
-            return;
+            return false;
         }
         // abB     abA     acA     acC     bcC     bcB     ABC
         //两边+非夹角及三个角无法确定唯一三角形，故不可解
         if (Logic.isExist(a, b, degB) || Logic.isExist(a, b, degA) || Logic.isExist(a, c, degA) ||
             Logic.isExist(a, c, degC) || Logic.isExist(c, b, degB) || Logic.isExist(c, b, degC) || Logic.isExist(degA, degB, degC)) {
             console.log("三角形不可解!");
-            return;
+            return false;
         }
 /////////////////////3///////两边一角--解三角形///////////////////////////////////
         if (Logic.isExist(a, b, degC)) {
@@ -146,18 +146,15 @@ class Parse {
         if (Logic.isExist(c, a, degB)) {
             b = Law.cosGetL(degB, a, c);
             degC = Law.cosGetDeg(c, b, a);
-
         }
 
         if (Logic.isExist(b, c, degA)) {
             a = Law.cosGetL(degA, b, c);
             degC = Law.cosGetDeg(c, b, a);
-
         }
 /////////////////1///////////三边--解三角形///////////////////////////////////
         if (Logic.isExist(a, b, c)) {
             degC = Law.cosGetDeg(c, b, a);
-
         }
 /////////////////9///////////两脚一边--解三角形///////////////////////////////////
         if (Logic.isExist(degA, degB, a)) {
@@ -176,20 +173,17 @@ class Parse {
             degC = Math.PI - degA - degB;
             a = Law.sinGetL(degA, degC, c);
             b = Law.cosGetL(degB, a, c);
-
         }
         ////////////////
         if (Logic.isExist(degA, degC, a)) {
             degB = Math.PI - degA - degC;
             c = Law.sinGetL(degC, degA, a);
             b = Law.cosGetL(degB, a, c);
-
         }
         if (Logic.isExist(degA, degC, b)) {
             degB = Math.PI - degA - degC;
             a = Law.sinGetL(degA, degB, b);
             c = Law.cosGetL(degC, a, b);
-
         }
         if (Logic.isExist(degA, degC, c)) {
             degB = Math.PI - degA - degC;

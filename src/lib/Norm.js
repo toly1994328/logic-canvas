@@ -1,3 +1,5 @@
+import Parse from "./Parse";
+//图形标准化============待完善，旋转中心问题，此类暂时停止使用
 class Norm {
 
     static line(ctx) {
@@ -18,15 +20,15 @@ class Norm {
             c: 1
         });
 
-        console.table(triangle);
-
         var _p0 = {x: 0, y: 0};
         var _p1 = {x: 1 * rate, y: 0};
         var _p2 = {x: triangle.b * rate * Math.cos(ang0), y: triangle.b * rate * Math.sin(ang0)};
-        console.log(_p2);
         var coo = info["coo"];
+        var p = info["p"];
         ctx.moveTo(_p0.x + coo.x, coo.y - _p0.y);
         ctx.lineTo(_p1.x + coo.x, coo.y - _p1.y);
         ctx.lineTo(_p2.x + coo.x, coo.y - _p2.y);
     }
 }
+
+export default Norm;

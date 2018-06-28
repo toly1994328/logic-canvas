@@ -1,4 +1,5 @@
 import Polygon from "./Polygon"
+import Norm from "./Norm"
 
 /**
  * 构造函数
@@ -35,7 +36,7 @@ MyCanvas.prototype = {
      * @returns {CanvasRenderingContext2D | WebGLRenderingContext} 绘制上下文
      */
     getCtx: function () {
-        var canvas= document.getElementById(this.canvasId);
+        var canvas = document.getElementById(this.canvasId);
         var context = canvas.getContext("2d");
         this.ctx = context;
         return context;
@@ -149,6 +150,9 @@ MyCanvas.prototype = {
         // var coo = configJson["coo"]||{x:0, y: 0};
         var x = p.x;
         var y = p.y;
+        if (configJson["coo"] !== {x: 0, y: 0}) {
+            y = -y;
+        }
         var rot = configJson["rot"] || 0;
         var border = configJson["b"] || 1;
         //---增加缩放字段---m-toly:2018-6-15 08:43:53
@@ -293,14 +297,23 @@ MyCanvas.prototype = {
             });
         }
     },
-
+    /**
+     * 绘制三角形
+     * @param configJson
+     */
     drawTrg: function (configJson) {
-        var self = this;
+        var self;
         this.s2rb2c(function (ctx) {
-            Norm.trg(ctx, configJson);
+            self = Polygon.trgPath(ctx, configJson);
         }, configJson);
+        return self;
     },
-
+    /**
+     * 绘制直角坐标系
+     * @param coo 坐标原点
+     * @param line_h 小线高
+     * @param step 小线间隔（像素）
+     */
     drawCoord: function (coo, line_h = 2, step = 10) {
         var COO = coo;//坐标原点
         var LINE_H = line_h;//小线高
@@ -332,6 +345,26 @@ MyCanvas.prototype = {
                 coo: COO,
             })
         }
+
+        this.drawTrg(
+            {
+                p0: ({x: -5, y: COO.y - 12}),
+                p1: ({x: 5, y: COO.y - 12}),
+                p2: ({x: 0, y: COO.y}),
+                coo: COO,
+                ss: false,
+                fs: "#000"
+            });
+
+        this.drawTrg(
+            {
+                p0: ({x: this.winW - COO.x - 12, y: 5}),
+                p1: ({x: this.winW - COO.x - 12, y: -5}),
+                p2: ({x: this.winW - COO.x, y: 0}),
+                coo: COO,
+                ss: false,
+                fs: "#000"
+            });
     },
 
     /**

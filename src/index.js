@@ -31,17 +31,27 @@ canvas.drawCoord(COO);
 // }
 
 //绘制给定起点,长度，角度的直线（长度和角度30ms加1）,起点为坐标原点
-var count = 0;
-canvas.runGo(function (timer) {
-    canvas.drawLine({
-        p0: {x: 0, y: 0},
-        c: count,
-        ang: count / 180 * Math.PI,
-        ss: canvas.getRandomColor(),//获取随机色
-        coo: COO,//设置坐标系
-    });
-    count++;
-    if (count >= 360 + 90) {
-        clearInterval(timer);
-    }
-}, 30);
+// var count = 0;
+// canvas.runGo(function (timer) {
+//     canvas.drawLine({
+//         p0: {x: 0, y: 0},
+//         c: count,
+//         ang: count / 180 * Math.PI,
+//         ss: canvas.getRandomColor(),//获取随机色
+//         coo: COO,//设置坐标系
+//     });
+//     count++;
+//     if (count >= 360 + 90) {
+//         clearInterval(timer);
+//     }
+// }, 30);
+
+//三角形绘制：
+let drawTrg = canvas.drawTrg({
+    p0: {x: 0, y: 0},
+    p1: {x: 100, y: 0},
+    p2: {x: 200, y: 0},
+    coo: COO
+});
+
+console.log(drawTrg);
