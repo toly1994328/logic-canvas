@@ -1,4 +1,3 @@
-
 import Polygon from "./Polygon"
 
 /**
@@ -8,15 +7,20 @@ import Polygon from "./Polygon"
  * @param canvasId 画布dom中的id
  * @constructor
  */
-var MyCanvas = function (winW, winH, canvasId,$) {
+var MyCanvas = function (winW, winH, canvasId) {
 
     this.winW = winW;
     this.winH = winH;
     this.canvasId = canvasId;
-    this.$ = $;
-    this.$('body').append("<canvas id=" + this.canvasId + " width=" + this.winW + " height=" + this.winH + ">" +
-        " 当前浏览器不支持Canvas，请更换浏览器后再试\n" +
-        "</canvas>");
+
+    var el = document.createElement("canvas");
+    el.setAttribute("id", this.canvasId);
+    el.setAttribute("width", this.winW);
+    el.setAttribute("height", this.winH);
+    el.innerHTML = " 当前浏览器不支持Canvas，请更换浏览器后再试";
+    var body = document.getElementsByTagName("body");
+    body[0].appendChild(el);
+
     this.ctx = this.getCtx();//绘制context对象
 
 };
@@ -31,8 +35,7 @@ MyCanvas.prototype = {
      * @returns {CanvasRenderingContext2D | WebGLRenderingContext} 绘制上下文
      */
     getCtx: function () {
-        var idStr = "#" + this.canvasId;
-        var canvas = this.$(idStr)[0];
+        var canvas= document.getElementById(this.canvasId);
         var context = canvas.getContext("2d");
         this.ctx = context;
         return context;
@@ -55,8 +58,7 @@ MyCanvas.prototype = {
      * @returns {*} canvas标签的dom节点
      */
     getCanvas: function () {
-        var idStr = "#" + this.canvasId;
-        return this.$(idStr)[0];
+        return document.getElementById(this.canvasId);
     },
 
     /**

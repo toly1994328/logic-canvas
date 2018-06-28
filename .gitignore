@@ -1,0 +1,6 @@
+node_modules
+.idea
+dist
+logic-canvas.iml
+doc
+test
