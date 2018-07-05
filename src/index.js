@@ -1,17 +1,20 @@
 import MyCanvas from "./lib/MyCanvas";
+import Logic from "./lib/Logic";
 
 let canvas = new MyCanvas(1200, 600, "canvas");
 canvas.clearWin();
-var COO = {x: 100, y: 400};//坐标原点
+var COO = {x: 600, y: 300};//坐标原点
 canvas.drawCoord(COO);
 //
 //
 // //绘制一个角个数为6，外接圆半径100，内接圆半径55，位置相对于左上角{x: 360, y: 400}处
 // //描边颜色"#D9ABF8",填充颜色"#F0F674"的多角形
 // canvas.drawNStar({
-//     num: 6, R: 100, r: 55, p: COO,
+//     num: 6, R: 100, r: 55, p: {x:0,y:0},
 //     ss: "#D9ABF8", fs: "#F0F674"
 // });
+
+
 //
 // //绘制一个宽100，高50，圆角半径10，位置相对于左上角（200,200）处
 // //描边颜色"#D9ABF8",不填充,线宽5px的长方形
@@ -21,7 +24,7 @@ canvas.drawCoord(COO);
 // });
 
 // for (let i = 0; i < 2000; i += 0.1) {
-//     myCanvas.drawPointPolar({
+//     canvas.drawPointPolar({
 //         R: 0.5,
 //         c: (1 - Math.sin(Logic.rad(i))) * 100,
 //         ang: Logic.rad(i),
@@ -46,10 +49,15 @@ canvas.drawCoord(COO);
 //     }
 // }, 30);
 
-//三角形绘制：
+// canvas.drawPoint({
+//     p: {x: 200, y: 200},
+//     coo: COO
+// });
+
+// 三角形绘制：
 // let drawTrg = canvas.drawTrg({
 //     p0: {x: 0, y: 0},
-//     p1: {x: 100, y: 0},
+//     p1: {x: 100, y: 100},
 //     p2: {x: 200, y: 0},
 //     coo: COO
 // });
@@ -71,7 +79,7 @@ canvas.drawCoord(COO);
 //     }
 // }, 10);
 
-//点集曲线
+// 点集曲线
 // for (let i = 0; i < 2000; i += 0.1) {
 //     canvas.drawPointPolar({
 //         R: 0.5,//点半径
@@ -87,8 +95,8 @@ canvas.runGo(function (timer) {
     canvas.clearWin();
     canvas.drawCoord(COO);
     canvas.drawNStar({
-        num: count, R: 100, r: 55,p:{x:100,y:0},
-        ss: false, fs: "#F0F674"
+        num: count, R: 100, r: 55, p: {x: 0, y: 0},
+        ss: false, fs: "#F0F674",coo: COO
     });
     count++;
     if (count >= 200) {

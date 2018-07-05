@@ -9,9 +9,7 @@ class Polygon {
 
         var R = configJson["R"] || 1;
         configJson["ss"] = false;
-        var coo = configJson["coo"] || {x: 0, y: 0};
-        var p = configJson["p"] || {x: 0, y: 0};
-        ctx.arc(p.x + coo.x - p.x, coo.y - p.y - p.y, R, 0, 2 * Math.PI);
+        ctx.arc(0, 0, R, 0, 2 * Math.PI);
 
     }
 
@@ -23,16 +21,14 @@ class Polygon {
 
         var R = configJson["R"] || 1;
         configJson["ss"] = false;
-        var coo = configJson["coo"] || {x: 0, y: 0};
-        ctx.arc(p.x + coo.x, coo.y - p.y, R, 0, 2 * Math.PI);
+        ctx.arc(p.x, p.y, R, 0, 2 * Math.PI);
     }
 
     static linePath(ctx, configJson) {
 
         var line = Parse.line(configJson);
-        var coo = configJson["coo"];
-        ctx.moveTo(line.p0.x + coo.x, coo.y - line.p0.y);
-        ctx.lineTo(line.p1.x + coo.x, coo.y - line.p1.y);
+        ctx.moveTo(line.p0.x, line.p0.y);
+        ctx.lineTo(line.p1.x, line.p1.y);
         return line;
     }
 
@@ -40,16 +36,15 @@ class Polygon {
         var p0 = configJson["p0"];
         var p1 = configJson["p1"];
         var p2 = configJson["p2"];
-        var coo = configJson["coo"];
 
         var a = Logic.disPos2d(p1, p2);
         var b = Logic.disPos2d(p0, p2);
         var c = Logic.disPos2d(p0, p1);
-        var triangle = Parse.triangle({a:a,b:b,c:c});
+        var triangle = Parse.triangle({a: a, b: b, c: c});
         if (triangle != false) {
-            ctx.moveTo(p0.x + coo.x, coo.y - p0.y);
-            ctx.lineTo(p1.x + coo.x, coo.y - p1.y);
-            ctx.lineTo(p2.x + coo.x, coo.y - p2.y);
+            ctx.moveTo(p0.x, -p0.y);
+            ctx.lineTo(p1.x, -p1.y);
+            ctx.lineTo(p2.x, -p2.y);
             return triangle;
         } else {
             console.log("无法组成三角形！");
@@ -86,6 +81,8 @@ class Polygon {
         var num = configJson["num"] || 5;
         var R = configJson["R"] || 100;
         var r = configJson["r"] || 50;
+
+
         for (var i = 0; i < num; i++) {
             var perDeg = 360 / num;
             var degA = perDeg / 2 / 2;

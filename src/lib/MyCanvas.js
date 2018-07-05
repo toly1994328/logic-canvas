@@ -150,14 +150,24 @@ MyCanvas.prototype = {
         // var coo = configJson["coo"]||{x:0, y: 0};
         var x = p.x;
         var y = p.y;
-        if (configJson["coo"] !== {x: 0, y: 0}) {
-            y = -y;
-        }
+        // if (configJson["coo"] !== {x: 0, y: 0}) {
+        //     y = -y;
+        // }
         var rot = configJson["rot"] || 0;
         var border = configJson["b"] || 1;
         //---增加缩放字段---m-toly:2018-6-15 08:43:53
         var sx = configJson["sx"] || 1;
         var sy = configJson["sy"] || 1;
+
+
+        var coo = configJson["coo"];
+        if (coo !== undefined) {
+            x = coo.x + x;
+            y = coo.y - p.y;
+            p.x = x;
+            p.y = y;
+        }
+
         // configJson["b"] = border / sx;//放大时保持边线宽：//m-end
         //将图形的移动和旋转从绘制图形时分离
         //减少图形绘制复杂度和代码可读性
@@ -256,6 +266,7 @@ MyCanvas.prototype = {
         var self = this;
         this.s2rb2c(function (ctx) {
             Polygon.pointPath(ctx, configJson);
+            console.log(configJson);
         }, configJson);
     },
 
@@ -349,25 +360,25 @@ MyCanvas.prototype = {
             })
         }
 
-        this.drawTrg(
-            {
-                p0: ({x: -5, y: COO.y - 12}),
-                p1: ({x: 5, y: COO.y - 12}),
-                p2: ({x: 0, y: COO.y}),
-                coo: COO,
-                ss: false,
-                fs: "#000"
-            });
-
-        this.drawTrg(
-            {
-                p0: ({x: this.winW - COO.x - 12, y: 5}),
-                p1: ({x: this.winW - COO.x - 12, y: -5}),
-                p2: ({x: this.winW - COO.x, y: 0}),
-                coo: COO,
-                ss: false,
-                fs: "#000"
-            });
+        // this.drawTrg(
+        //     {
+        //         p0: ({x: -5, y: COO.y - 12}),
+        //         p1: ({x: 5, y: COO.y - 12}),
+        //         p2: ({x: 0, y: COO.y}),
+        //         coo: COO,
+        //         ss: false,
+        //         fs: "#000"
+        //     });
+        //
+        // this.drawTrg(
+        //     {
+        //         p0: ({x: this.winW - COO.x - 12, y: 5}),
+        //         p1: ({x: this.winW - COO.x - 12, y: -5}),
+        //         p2: ({x: this.winW - COO.x, y: 0}),
+        //         coo: COO,
+        //         ss: false,
+        //         fs: "#000"
+        //     });
     },
 
     /**
