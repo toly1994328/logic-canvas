@@ -347,38 +347,38 @@ MyCanvas.prototype = {
         }
 
         this.drawLine({
-            p0: {x: 0, y: COO.y},
-            p1: {x: 0, y: COO.y - this.winH},
+            p0: {x: 0, y: -COO.y},
+            p1: {x: 0, y: -COO.y + this.winH},
             coo: COO,
         });
 
         for (let i = 1; i < this.winH / STEP; i++) {
             this.drawLine({
-                p0: {x: 0, y: COO.y - this.winH + STEP * i},
-                p1: {x: LINE_H, y: COO.y - this.winH + STEP * i},
+                p0: {x: 0, y: -(COO.y - this.winH + STEP * i)},
+                p1: {x: LINE_H, y: -(COO.y - this.winH + STEP * i)},
                 coo: COO,
             })
         }
 
-        // this.drawTrg(
-        //     {
-        //         p0: ({x: -5, y: COO.y - 12}),
-        //         p1: ({x: 5, y: COO.y - 12}),
-        //         p2: ({x: 0, y: COO.y}),
-        //         coo: COO,
-        //         ss: false,
-        //         fs: "#000"
-        //     });
-        //
-        // this.drawTrg(
-        //     {
-        //         p0: ({x: this.winW - COO.x - 12, y: 5}),
-        //         p1: ({x: this.winW - COO.x - 12, y: -5}),
-        //         p2: ({x: this.winW - COO.x, y: 0}),
-        //         coo: COO,
-        //         ss: false,
-        //         fs: "#000"
-        //     });
+        this.drawTrg(
+            {
+                p0: ({x: -5, y: COO.y - 12}),
+                p1: ({x: 5, y: COO.y - 12}),
+                p2: ({x: 0, y: COO.y}),
+                coo: COO,
+                ss: false,
+                fs: "#000"
+            });
+
+        this.drawTrg(
+            {
+                p0: ({x: this.winW - COO.x - 12, y: 5}),
+                p1: ({x: this.winW - COO.x - 12, y: -5}),
+                p2: ({x: this.winW - COO.x, y: 0}),
+                coo: COO,
+                ss: false,
+                fs: "#000"
+            });
     },
 
     /**

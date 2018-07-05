@@ -3,7 +3,7 @@ import Logic from "./lib/Logic";
 
 let canvas = new MyCanvas(1200, 600, "canvas");
 canvas.clearWin();
-var COO = {x: 600, y: 300};//坐标原点
+var COO = {x: 100, y: 100};//坐标原点
 canvas.drawCoord(COO);
 //
 //

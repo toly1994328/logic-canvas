@@ -3,7 +3,7 @@
 ```
 npm i logic-canvas
 ```
-##### 绘制一个指定原点的坐标系
+##### 在src/index.js下：绘制一个指定原点的坐标系
 ```
 //引入依赖，注意相对路径
 import MyCanvas from "../node_modules/logic-canvas/src/lib/MyCanvas";
