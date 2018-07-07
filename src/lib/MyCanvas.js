@@ -118,6 +118,8 @@ MyCanvas.prototype = {
         ctx.globalAlpha = configJson["ga"] || "1";
         //设置全局透明度
         ctx.globalCompositeOperation = configJson["gco"] || "source-over";
+
+
     },
 
     ////////////////////////////////////////////////////////////
@@ -147,13 +149,13 @@ MyCanvas.prototype = {
         var ctx = this.ctx;
         ctx.save();
         var p = configJson["p"] || {x: 0, y: 0};
-        // var coo = configJson["coo"]||{x:0, y: 0};
+        var a = configJson["a"] || {x: 0, y: 0};
+        var rot = configJson["rot"] || 0;
+
         var x = p.x;
         var y = p.y;
-        // if (configJson["coo"] !== {x: 0, y: 0}) {
-        //     y = -y;
-        // }
-        var rot = configJson["rot"] || 0;
+
+
         var border = configJson["b"] || 1;
         //---增加缩放字段---m-toly:2018-6-15 08:43:53
         var sx = configJson["sx"] || 1;
@@ -172,7 +174,11 @@ MyCanvas.prototype = {
         //将图形的移动和旋转从绘制图形时分离
         //减少图形绘制复杂度和代码可读性
         ctx.translate(x + border, y + border);
+
+        ctx.translate(a.x, a.y);
         ctx.rotate(rot);
+        ctx.translate(-a.x, -a.y);
+
         ctx.scale(sx, sy);//---m-toly:2018-6-15 08:43:53
 
         ctx.beginPath();

@@ -3,7 +3,7 @@ import Logic from "./lib/Logic";
 
 let canvas = new MyCanvas(1200, 600, "canvas");
 canvas.clearWin();
-var COO = {x: 100, y: 100};//坐标原点
+var COO = {x: 0, y: 0};//坐标原点
 canvas.drawCoord(COO);
 //
 //
@@ -90,13 +90,30 @@ canvas.drawCoord(COO);
 //     });
 // }
 
+// var count = 0;
+// canvas.runGo(function (timer) {
+//     canvas.clearWin();
+//     canvas.drawCoord(COO);
+//     canvas.drawNStar({
+//         num: count, R: 100, r: 55, p: {x: 0, y: 0},
+//         ss: false, fs: "#F0F674",coo: COO
+//     });
+//     count++;
+//     if (count >= 200) {
+//         clearInterval(timer);
+//     }
+// }, 30);
+
 var count = 0;
 canvas.runGo(function (timer) {
     canvas.clearWin();
     canvas.drawCoord(COO);
-    canvas.drawNStar({
-        num: count, R: 100, r: 55, p: {x: 0, y: 0},
-        ss: false, fs: "#F0F674",coo: COO
+    canvas.drawLine({
+        p0: {x: 100, y: 100},
+        p1: {x: 200, y: 100},
+        a: {x: 150, y: 100},
+        p:{x:300, y: 300},
+        rot:Logic.rad(count)
     });
     count++;
     if (count >= 200) {
